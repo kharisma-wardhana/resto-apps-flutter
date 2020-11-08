@@ -38,10 +38,15 @@ class _HomePageState extends State<HomePage> {
                   Expanded(
                       child: Align(
                     alignment: Alignment.centerRight,
-                    child: Icon(
-                      EvaIcons.questionMarkCircle,
-                      color: secondColorDark,
-                      size: 40,
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(AboutPage());
+                      },
+                      child: Icon(
+                        EvaIcons.questionMarkCircle,
+                        color: secondColorDark,
+                        size: 40,
+                      ),
                     ),
                   ))
                 ],
@@ -65,13 +70,26 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Row(
                                 children: restaurants
-                                    .map((e) => Padding(
+                                    .map((resto) => Padding(
                                           padding: EdgeInsets.only(
-                                              left: (e == restaurants.first)
+                                              left: (resto == restaurants.first)
                                                   ? defaultMargin + 38
                                                   : 0,
                                               right: 10),
-                                          child: restaurantItem(context, e),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              Get.to(
+                                                DetailsPage(
+                                                  restaurant: resto,
+                                                  onBackPressed: () {
+                                                    Get.back();
+                                                  },
+                                                ),
+                                              );
+                                            },
+                                            child:
+                                                restaurantItem(context, resto),
+                                          ),
                                         ))
                                     .toList(),
                               )
@@ -188,11 +206,14 @@ Widget restaurantItem(BuildContext context, Restaurant restaurant) {
             end: Alignment.bottomLeft)),
     child: Column(
       children: [
-        Container(
-          height: 200,
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.network(restaurant.pictureId)),
+        Hero(
+          tag: restaurant.id,
+          child: Container(
+            height: 200,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(restaurant.pictureId)),
+          ),
         ),
         SizedBox(
           height: 10,

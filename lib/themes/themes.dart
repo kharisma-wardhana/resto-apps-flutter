@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const mainColor = Color(0xFFFEA725); //F88D07
-const mainColorDark = Color(0xFFDF8806); //E97204
-const secondColor = Color(0xFF505E5E);
-const secondColorDark = Color(0xFF394242); //060401
-const whiteColor = Color(0xFFD1D3DB);
-const lightColor = Color(0xFFB0BAD4);
+const mainColor = Color(0xFFFFC046);
+const mainColorDark = Color(0xFFFF8F00);
+const secondColor = Color(0xFF62727B);
+const secondColorDark = Color(0xFF37474F);
+const whiteColor = Color(0xFFFAFAFA);
+const lightColor = Color(0xFFE2F1F8);
 
 const double defaultMargin = 24;
 
@@ -26,8 +25,4 @@ TextStyle infoLightStyle = GoogleFonts.poppins().copyWith(
 );
 TextStyle infoStyle = GoogleFonts.poppins().copyWith(
   color: secondColor,
-);
-
-Widget loadingIndicator = SpinKitFadingFour(
-  color: mainColor,
 );
