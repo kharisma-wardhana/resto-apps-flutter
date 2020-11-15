@@ -3,7 +3,7 @@ part of 'widgets.dart';
 class CustomLoading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig.init(context);
     return Container(
       width: SizeConfig.screenWidth,
       height: SizeConfig.screenHeight,

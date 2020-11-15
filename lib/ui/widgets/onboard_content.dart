@@ -43,7 +43,9 @@ class OnboardContent extends StatelessWidget {
           height: 200,
           width: double.infinity,
           color: Colors.white,
-          margin: EdgeInsets.only(top: SizeConfig.screenHeight * 0.6),
+          margin: EdgeInsets.only(
+            top: SizeConfig.screenHeight * 0.6,
+          ),
           child: Column(
             children: [
               Container(

@@ -41,12 +41,12 @@ class _OnboardPageState extends State<OnboardPage> {
 
   Future<bool> _savePref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return await prefs.setBool('first_login', true);
+    return await prefs.setBool('first_launch', true);
   }
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig.init(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -81,7 +81,7 @@ class _OnboardPageState extends State<OnboardPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(
                         onboardData.length,
-                        (index) => buildDot(index: index),
+                        (index) => _buildDot(index: index),
                       ),
                     ),
                     SizedBox(height: 50),
@@ -128,7 +128,7 @@ class _OnboardPageState extends State<OnboardPage> {
     );
   }
 
-  AnimatedContainer buildDot({int index}) {
+  AnimatedContainer _buildDot({int index}) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 400),
       child: Container(

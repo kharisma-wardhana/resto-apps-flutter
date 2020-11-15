@@ -1,13 +1,15 @@
 part of 'widgets.dart';
 
 class Menus extends StatelessWidget {
-  final List<Food> foods;
-  final List<Drink> drinks;
+  final Menu menu;
 
-  Menus(this.foods, this.drinks);
+  Menus(this.menu);
 
   @override
   Widget build(BuildContext context) {
+    final List<Food> foods = menu.foods;
+    final List<Drink> drinks = menu.drinks;
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -20,7 +22,7 @@ class Menus extends StatelessWidget {
             child: foods.length != 0
                 ? ListView(
                     scrollDirection: Axis.horizontal,
-                    children: foods.map((e) => menuItem(e)).toList(),
+                    children: foods.map((e) => _menuItem(e)).toList(),
                   )
                 : Center(
                     child: Text(
@@ -39,7 +41,7 @@ class Menus extends StatelessWidget {
             child: drinks.length != 0
                 ? ListView(
                     scrollDirection: Axis.horizontal,
-                    children: drinks.map((e) => menuItem(e)).toList(),
+                    children: drinks.map((e) => _menuItem(e)).toList(),
                   )
                 : Center(
                     child: Text(
@@ -52,7 +54,7 @@ class Menus extends StatelessWidget {
     );
   }
 
-  Container menuItem(dynamic item) {
+  Container _menuItem(dynamic item) {
     return Container(
       width: 280,
       margin: EdgeInsets.symmetric(

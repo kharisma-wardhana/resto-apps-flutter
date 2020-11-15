@@ -6,6 +6,8 @@ class Food {
   Food({this.name});
 
   factory Food.fromJson(Map<String, dynamic> json) {
-    return Food(name: json["name"]);
+    return Food(
+      name: json["name"],
+    );
   }
 }
