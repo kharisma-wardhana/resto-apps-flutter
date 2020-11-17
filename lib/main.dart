@@ -1,3 +1,4 @@
+import 'package:foodies/ui/widgets/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,10 +38,13 @@ class MyApp extends StatelessWidget {
     return FutureBuilder(
       future: checkFirstOpen(),
       builder: (_, snapshot) {
-        if (snapshot.data == null) {
-          return OnboardPage();
+        if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.data == null) {
+            return OnboardPage();
+          }
+          return HomePage();
         }
-        return HomePage();
+        return CustomLoading();
       },
     );
   }

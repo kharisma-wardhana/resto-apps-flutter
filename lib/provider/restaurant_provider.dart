@@ -4,13 +4,17 @@ class RestaurantProvider extends ChangeNotifier {
   String _message;
   ResultState _state;
   ResultState _detailState;
+  ResultState _searchState;
   List<Restaurant> _listRestaurant;
+  List<Restaurant> _listSearchRestaurant;
   Restaurant _restaurant;
 
   ResultState get state => _state;
   ResultState get detailState => _detailState;
+  ResultState get searchState => _searchState;
   String get message => _message;
   List<Restaurant> get listRestaurant => _listRestaurant;
+  List<Restaurant> get listSearchRestaurant => _listSearchRestaurant;
   Restaurant get restaurant => _restaurant;
 
   RestaurantProvider() {
@@ -61,20 +65,20 @@ class RestaurantProvider extends ChangeNotifier {
 
   Future<dynamic> searchRestaurant(String searchQuery) async {
     try {
-      _state = ResultState.Loading;
+      _searchState = ResultState.Loading;
       notifyListeners();
       final apiResponse =
           await RestaurantServices.searchRestaurant(searchQuery);
       if (apiResponse.data == null) {
-        _state = ResultState.NoData;
+        _searchState = ResultState.NoData;
         notifyListeners();
         return _message = "Empty Data";
       }
-      _state = ResultState.HasData;
+      _searchState = ResultState.HasData;
       notifyListeners();
-      return _listRestaurant = apiResponse.data;
+      return _listSearchRestaurant = apiResponse.data;
     } catch (e) {
-      _state = ResultState.Error;
+      _searchState = ResultState.Error;
       notifyListeners();
       return _message = "Error ==== $e";
     }
