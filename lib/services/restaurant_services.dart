@@ -61,4 +61,11 @@ class RestaurantServices {
     }
     return url;
   }
+
+  static Future<ApiResponse<CustomerReview>> postReview(
+      String name, String message,
+      {http.Client client}) async {
+    client ??= http.Client();
+    return ApiResponse(message: "");
+  }
 }

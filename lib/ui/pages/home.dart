@@ -198,7 +198,7 @@ Widget _restaurantItem(BuildContext context, Restaurant restaurant) {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         Text(
           restaurant.city,
@@ -208,7 +208,7 @@ Widget _restaurantItem(BuildContext context, Restaurant restaurant) {
           ),
         ),
         SizedBox(
-          height: 10,
+          height: 5,
         ),
         Text(
           restaurant.name,
@@ -218,7 +218,7 @@ Widget _restaurantItem(BuildContext context, Restaurant restaurant) {
           ),
         ),
         SizedBox(
-          height: 25,
+          height: 10,
         ),
         SizedBox(
           width: 250,
