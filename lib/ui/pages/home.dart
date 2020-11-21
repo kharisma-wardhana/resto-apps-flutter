@@ -18,13 +18,13 @@ class _HomePageState extends State<HomePage> {
             color: lightColor,
           ),
           Positioned(
-            top: -80,
-            left: -40,
+            top: -SizeConfig.screenWidth * 0.3,
+            left: -SizeConfig.screenWidth * 0.2,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(180),
               child: Container(
-                width: 250,
-                height: 250,
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenWidth,
                 color: secondColorDark,
               ),
             ),
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     child: Text(
-                      "Discover\nRestaurants",
+                      "Temukan\nRestaurants",
                       style: subtitleStyle.copyWith(
                         color: whiteColor,
                         fontSize: 25,
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
           ),
           SafeArea(
             child: Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.centerLeft,
               child: _sideBarMenu(context),
             ),
           ),
@@ -134,6 +134,7 @@ Widget _listRestaurant(BuildContext context) {
                                         onBackPressed: () {
                                           Get.back();
                                         },
+                                        initialPage: 0,
                                       ),
                                     );
                                   }
@@ -246,7 +247,7 @@ Widget _restaurantItem(BuildContext context, Restaurant restaurant) {
 Widget _sideBarMenu(BuildContext context) {
   return Container(
     width: 60,
-    height: SizeConfig.screenHeight * 0.5,
+    height: SizeConfig.screenHeight * 0.2,
     decoration: BoxDecoration(
       color: lightColor,
       borderRadius: BorderRadius.circular(30),
@@ -255,30 +256,6 @@ Widget _sideBarMenu(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        RotatedBox(
-          quarterTurns: 3,
-          child: GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Icon(
-                  EvaIcons.heart,
-                  color: secondColorDark,
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Favorite",
-                  style: infoStyle.copyWith(
-                    fontSize: 18,
-                    decoration: TextDecoration.none,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
         RotatedBox(
           quarterTurns: 3,
           child: GestureDetector(
@@ -298,7 +275,7 @@ Widget _sideBarMenu(BuildContext context) {
                   width: 8,
                 ),
                 Text(
-                  "About",
+                  "About Me",
                   style: infoStyle.copyWith(
                     fontSize: 18,
                     decoration: TextDecoration.none,

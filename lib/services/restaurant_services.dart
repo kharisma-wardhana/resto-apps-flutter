@@ -62,10 +62,33 @@ class RestaurantServices {
     return url;
   }
 
-  static Future<ApiResponse<CustomerReview>> postReview(
-      String name, String message,
+  static Future<ApiResponse<List<CustomerReview>>> postReview(
+      String id, String name, String review,
       {http.Client client}) async {
     client ??= http.Client();
-    return ApiResponse(message: "");
+
+    var response = await client.post(
+      endpointReviewResto,
+      headers: {
+        "Content-Type": "application/json",
+        "X-Auth-Token": tokenKey,
+      },
+      body: jsonEncode(<String, dynamic>{
+        'id': id,
+        'name': name,
+        'review ': review,
+      }),
+    );
+    print(response.headers);
+    if (response.statusCode != 200) {
+      return ApiResponse(message: 'Please try again ${response.statusCode}');
+    }
+
+    var data = jsonDecode(response.body);
+    List<CustomerReview> customerReviews = (data['customerReviews'] as Iterable)
+        .map((e) => CustomerReview.fromJson(e))
+        .toList();
+
+    return ApiResponse(data: customerReviews);
   }
 }

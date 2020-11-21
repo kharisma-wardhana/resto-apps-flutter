@@ -16,7 +16,7 @@ class _SearchPageState extends State<SearchPage> {
       body: Stack(
         children: [
           Container(
-            color: secondColor,
+            color: lightColor,
           ),
           SafeArea(
             child: ListView(
@@ -24,7 +24,7 @@ class _SearchPageState extends State<SearchPage> {
                 Column(
                   children: [
                     Container(
-                      color: mainColor,
+                      color: secondColorDark,
                       width: SizeConfig.screenWidth,
                       height: 65,
                       child: Row(
@@ -35,7 +35,7 @@ class _SearchPageState extends State<SearchPage> {
                             child: IconButton(
                               icon: Icon(
                                 EvaIcons.arrowIosBack,
-                                color: secondColorDark,
+                                color: whiteColor,
                               ),
                               iconSize: 30,
                               onPressed: () {
@@ -50,7 +50,7 @@ class _SearchPageState extends State<SearchPage> {
                                 "Search Restaurant",
                                 style: infoStyle.copyWith(
                                   fontSize: 20,
-                                  color: secondColorDark,
+                                  color: whiteColor,
                                 ),
                               ),
                             ),
@@ -83,7 +83,17 @@ class _SearchPageState extends State<SearchPage> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.only(right: 8),
+                            margin: EdgeInsets.only(right: 8),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: secondColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: secondColorDark,
+                                    spreadRadius: 1,
+                                    blurRadius: 0.5,
+                                  ),
+                                ]),
                             child: IconButton(
                               icon: Icon(
                                 EvaIcons.search,
@@ -192,17 +202,16 @@ class _SearchPageState extends State<SearchPage> {
       width: SizeConfig.screenWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: lightColor,
+        color: whiteColor,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 8,
+            padding: EdgeInsets.only(
+              right: 8,
             ),
-            width: 100,
+            width: 150,
             height: 100,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
@@ -220,9 +229,17 @@ class _SearchPageState extends State<SearchPage> {
                     fit: BoxFit.cover,
                   );
                 }
-                return Image.network(
-                  snapshot.data,
-                  fit: BoxFit.cover,
+                return ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8),
+                    bottomLeft: Radius.circular(8),
+                  ),
+                  child: Container(
+                    child: Image.network(
+                      snapshot.data,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 );
               },
             ),

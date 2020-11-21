@@ -7,5 +7,7 @@ import 'package:lottie/lottie.dart';
 
 part 'custom_loading.dart';
 part 'custom_rating.dart';
+part 'custom_tabbar.dart';
 part 'onboard_content.dart';
 part 'menus.dart';
+part 'reviews.dart';

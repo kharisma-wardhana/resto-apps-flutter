@@ -90,7 +90,8 @@ class _OnboardPageState extends State<OnboardPage> {
                       width: 150,
                       child: FlatButton(
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         onPressed: isLastIndex
                             ? () {
                                 Future<bool> saveFirstOpen = _savePref();

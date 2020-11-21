@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 part 'restaurant_services.dart';
 
+const tokenKey = '12345';
 const baseURL = 'https://restaurant-api.dicoding.dev';
 const baseImageURL = 'https://restaurant-api.dicoding.dev/images/small';
 const endpointListResto = '$baseURL/list';

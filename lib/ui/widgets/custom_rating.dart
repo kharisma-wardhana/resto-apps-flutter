@@ -20,7 +20,7 @@ class CustomRating extends StatelessWidget {
           ) +
           [
             SizedBox(
-              width: 4,
+              width: 5,
             ),
             Text(
               rate.toString(),

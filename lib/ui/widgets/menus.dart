@@ -13,9 +13,16 @@ class Menus extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: Text("Foods"),
+            child: Text(
+              "Foods",
+              style: infoStyle,
+            ),
+          ),
+          SizedBox(
+            height: 8,
           ),
           Container(
             height: 100,
@@ -34,7 +41,13 @@ class Menus extends StatelessWidget {
             height: 10,
           ),
           Container(
-            child: Text("Drinks"),
+            child: Text(
+              "Drinks",
+              style: infoStyle,
+            ),
+          ),
+          SizedBox(
+            height: 8,
           ),
           Container(
             height: 100,
@@ -61,7 +74,7 @@ class Menus extends StatelessWidget {
         horizontal: 10,
       ),
       decoration: BoxDecoration(
-        color: mainColor,
+        color: lightColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -79,7 +92,8 @@ class Menus extends StatelessWidget {
           Text(
             item.name,
             style: infoStyle.copyWith(
-              color: whiteColor,
+              color: mainColorDark,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],
