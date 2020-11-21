@@ -58,6 +58,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _detailState = ResultState.HasData;
       notifyListeners();
+      _listcustomerReview = apiResponse.data.customerReviews;
       return _restaurant = apiResponse.data;
     } catch (e) {
       _detailState = ResultState.Error;
@@ -88,12 +89,12 @@ class RestaurantProvider extends ChangeNotifier {
   }
 
   Future<dynamic> addReview(
-      String restaurantId, String name, String message) async {
+      String restaurantId, String name, String review) async {
     try {
       _state = ResultState.Loading;
       notifyListeners();
       final apiResponse =
-          await RestaurantServices.postReview(restaurantId, name, message);
+          await RestaurantServices.postReview(restaurantId, name, review);
       if (apiResponse.data == null) {
         _state = ResultState.NoData;
         notifyListeners();

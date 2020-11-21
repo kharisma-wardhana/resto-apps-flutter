@@ -27,8 +27,6 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   void dispose() {
     pageController.dispose();
-    reviewerMessageController.dispose();
-    reviewerNameController.dispose();
     super.dispose();
   }
 
@@ -109,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                           ),
                           Container(
-                            height: SizeConfig.screenHeight,
+                            height: SizeConfig.screenHeight * 0.6,
                             child: PageView(
                               controller: pageController,
                               onPageChanged: (index) {
@@ -230,12 +228,11 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
             onPressed: () {
               String name = reviewerNameController.text;
-              String message = reviewerMessageController.text;
-              print(restaurant.id);
+              String review = reviewerMessageController.text;
               context.read<RestaurantProvider>().addReview(
                     restaurant.id,
                     name,
-                    message,
+                    review,
                   );
             },
             child: Row(
@@ -259,7 +256,7 @@ class _DetailsPageState extends State<DetailsPage> {
         Consumer<RestaurantProvider>(
           builder: (context, restaurantProvider, _) {
             if (restaurantProvider.state == ResultState.Loading) {
-              return CustomLoading();
+              return CircularProgressIndicator();
             }
             if (restaurantProvider.state == ResultState.Error) {
               return Center(
@@ -267,7 +264,7 @@ class _DetailsPageState extends State<DetailsPage> {
               );
             }
             return restaurantProvider.state == ResultState.HasData
-                ? CardReviews(restaurantProvider.restaurant.customerReviews)
+                ? CardReviews(restaurantProvider.listCustomerReview)
                 : Center(
                     child: Text(restaurantProvider.message),
                   );

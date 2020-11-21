@@ -67,19 +67,21 @@ class RestaurantServices {
       {http.Client client}) async {
     client ??= http.Client();
 
+    var bodyJson = jsonEncode(<String, dynamic>{
+      'id': id,
+      'name': name,
+      'review': review,
+    });
+
     var response = await client.post(
       endpointReviewResto,
       headers: {
         "Content-Type": "application/json",
         "X-Auth-Token": tokenKey,
       },
-      body: jsonEncode(<String, dynamic>{
-        'id': id,
-        'name': name,
-        'review ': review,
-      }),
+      body: bodyJson,
     );
-    print(response.headers);
+
     if (response.statusCode != 200) {
       return ApiResponse(message: 'Please try again ${response.statusCode}');
     }

@@ -15,7 +15,7 @@ class _AboutPageState extends State<AboutPage> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: secondColor,
+                  color: secondColorDark,
                   borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(10),
                     bottomLeft: Radius.circular(10),

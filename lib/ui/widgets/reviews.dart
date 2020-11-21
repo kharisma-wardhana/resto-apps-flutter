@@ -22,8 +22,9 @@ class CardReviews extends StatelessWidget {
             height: 8,
           ),
           Container(
+            height: SizeConfig.screenHeight * 0.3,
             child: reviews.length != 0
-                ? Column(
+                ? ListView(
                     children: reviews.map((e) => _reviewItem(e)).toList(),
                   )
                 : Center(
@@ -64,7 +65,7 @@ class CardReviews extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  customerReview.name,
+                  customerReview.name ?? "null",
                   style: infoStyle.copyWith(
                     color: secondColorDark,
                     fontWeight: FontWeight.w500,
@@ -84,7 +85,7 @@ class CardReviews extends StatelessWidget {
             width: 10,
           ),
           Text(
-            customerReview.review,
+            customerReview.review ?? "null",
             style: infoStyle.copyWith(
               color: secondColor,
               fontWeight: FontWeight.w500,
