@@ -123,6 +123,7 @@ class _SearchPageState extends State<SearchPage> {
                                     ResultState.Loading) {
                                   return CustomLoading();
                                 }
+                                print(dataProvider.searchState);
                                 if (dataProvider.searchState ==
                                         ResultState.Error ||
                                     dataProvider.searchState ==

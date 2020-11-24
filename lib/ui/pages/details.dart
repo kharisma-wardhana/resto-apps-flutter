@@ -107,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                           ),
                           Container(
-                            height: SizeConfig.screenHeight * 0.6,
+                            height: SizeConfig.screenHeight * 0.7,
                             child: PageView(
                               controller: pageController,
                               onPageChanged: (index) {

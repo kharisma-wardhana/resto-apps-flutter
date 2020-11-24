@@ -41,8 +41,7 @@ class RestaurantProvider extends ChangeNotifier {
     } catch (e) {
       _state = ResultState.Error;
       notifyListeners();
-      print(e);
-      return _message = "Error ==== $e";
+      return _message = "Silahkan check connection Anda";
     }
   }
 
@@ -63,7 +62,7 @@ class RestaurantProvider extends ChangeNotifier {
     } catch (e) {
       _detailState = ResultState.Error;
       notifyListeners();
-      return _message = "Error ==== $e";
+      return _message = "Silahkan check connection Anda";
     }
   }
 
@@ -73,10 +72,11 @@ class RestaurantProvider extends ChangeNotifier {
       notifyListeners();
       final apiResponse =
           await RestaurantServices.searchRestaurant(searchQuery);
-      if (apiResponse.data == null) {
+      if (apiResponse.data == null || apiResponse.data.isEmpty) {
         _searchState = ResultState.NoData;
         notifyListeners();
-        return _message = "Empty Data";
+        return _message =
+            "Empty Data, Silahkan masukkan nama\nrestaurant atau menu lainnya";
       }
       _searchState = ResultState.HasData;
       notifyListeners();
@@ -84,7 +84,7 @@ class RestaurantProvider extends ChangeNotifier {
     } catch (e) {
       _searchState = ResultState.Error;
       notifyListeners();
-      return _message = "Error ==== $e";
+      return _message = "Silahkan check connection Anda";
     }
   }
 
@@ -98,7 +98,7 @@ class RestaurantProvider extends ChangeNotifier {
       if (apiResponse.data == null) {
         _state = ResultState.NoData;
         notifyListeners();
-        return _message = "Empty Data ${apiResponse.message}";
+        return _message = "Empty Data";
       }
       _state = ResultState.HasData;
       notifyListeners();
@@ -107,7 +107,7 @@ class RestaurantProvider extends ChangeNotifier {
     } catch (e) {
       _state = ResultState.Error;
       notifyListeners();
-      return _message = "Error ==== $e";
+      return _message = "Silahkan check connection Anda";
     }
   }
 }
