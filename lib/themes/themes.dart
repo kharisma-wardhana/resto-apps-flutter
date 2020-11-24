@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const mainColor = Color(0xFFFFC046);
-const mainColorDark = Color(0xFFFF8F00);
-const secondColor = Color(0xFF62727B);
-const secondColorDark = Color(0xFF37474F);
+const mainColor = Color(0xFFFAD744);
+const mainColorDark = Color(0xFFEF5455);
+const secondColor = Color(0xFF2B3252);
+const secondColorDark = Color(0xFF141A46);
 const whiteColor = Color(0xFFFAFAFA);
-const lightColor = Color(0xFFE2F1F8);
+const lightColor = Color(0xFFFBEAEB);
 
 const double defaultMargin = 24;
 
