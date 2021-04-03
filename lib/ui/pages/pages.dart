@@ -18,3 +18,5 @@ part 'home.dart';
 part 'details.dart';
 part 'about.dart';
 part 'search.dart';
+part 'favorite.dart';
+part 'setting.dart';

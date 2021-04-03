@@ -67,37 +67,62 @@ class Menus extends StatelessWidget {
     );
   }
 
-  Container _menuItem(dynamic item) {
-    return Container(
-      width: 280,
-      margin: EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      decoration: BoxDecoration(
-        color: lightColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        children: [
-          Container(
-            height: 100,
-            child: Image.asset(
-              'assets/images/fast_foods.png',
-              fit: BoxFit.cover,
+  Widget _menuItem(dynamic item) {
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: 8,
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: 16,
+          ),
+          decoration: BoxDecoration(
+            color: secondColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            children: [
+              Container(
+                height: 100,
+                child: Image.asset(
+                  'assets/images/fast_foods.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Container(
+                width: 120,
+                child: Text(
+                  item.name,
+                  style: infoStyle.copyWith(
+                    color: mainColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 10,
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 25,
+          right: -22,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(180),
+            child: Container(
+              width: 50,
+              height: 50,
+              color: whiteColor,
             ),
           ),
-          SizedBox(
-            width: 10,
-          ),
-          Text(
-            item.name,
-            style: infoStyle.copyWith(
-              color: mainColorDark,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -25,6 +25,10 @@ class RestaurantProvider extends ChangeNotifier {
     _fetchAllRestaurant();
   }
 
+  Future<void> refreshAllRestaurant() async {
+    return _fetchAllRestaurant();
+  }
+
   Future<dynamic> _fetchAllRestaurant() async {
     try {
       _state = ResultState.Loading;

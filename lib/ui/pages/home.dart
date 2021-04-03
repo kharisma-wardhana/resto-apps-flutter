@@ -29,6 +29,18 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          Positioned(
+            bottom: -50,
+            right: -50,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(180),
+              child: Container(
+                width: SizeConfig.screenWidth * 0.8,
+                height: SizeConfig.screenWidth * 0.8,
+                color: secondColorDark,
+              ),
+            ),
+          ),
           SafeArea(
             child: Container(
               width: double.infinity,
@@ -111,6 +123,9 @@ Widget _listRestaurant(BuildContext context) {
       return restaurantProvider.state == ResultState.HasData
           ? ListView(
               scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics(),
+              ),
               children: [
                 Row(
                   children: restaurantProvider.listRestaurant

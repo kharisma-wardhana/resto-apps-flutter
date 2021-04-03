@@ -138,6 +138,10 @@ class _SearchPageState extends State<SearchPage> {
                                 return (dataProvider.searchState ==
                                         ResultState.HasData)
                                     ? ListView(
+                                        physics: const BouncingScrollPhysics(
+                                          parent:
+                                              AlwaysScrollableScrollPhysics(),
+                                        ),
                                         scrollDirection: Axis.vertical,
                                         children: [
                                           Column(
