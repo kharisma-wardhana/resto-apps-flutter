@@ -4,15 +4,19 @@ class DetailsPage extends StatefulWidget {
   final Function onBackPressed;
   final Restaurant restaurant;
   final int initialPage;
-  DetailsPage({this.onBackPressed, this.restaurant, this.initialPage = 0});
+  DetailsPage({
+    required this.onBackPressed,
+    required this.restaurant,
+    this.initialPage = 0,
+  });
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  int selectedPage;
-  PageController pageController;
+  late int selectedPage;
+  late PageController pageController;
 
   TextEditingController reviewerNameController = new TextEditingController();
   TextEditingController reviewerMessageController = new TextEditingController();
@@ -60,9 +64,7 @@ class _DetailsPageState extends State<DetailsPage> {
                         alignment: Alignment.centerLeft,
                         child: GestureDetector(
                           onTap: () {
-                            if (widget.onBackPressed != null) {
-                              widget.onBackPressed();
-                            }
+                            widget.onBackPressed();
                           },
                           child: Container(
                             padding: EdgeInsets.all(3),
@@ -164,7 +166,7 @@ class _DetailsPageState extends State<DetailsPage> {
               );
             }
             return restaurantProvider.state == ResultState.HasData
-                ? Menus(restaurantProvider.restaurant.menus)
+                ? Menus(restaurantProvider.restaurant!.menus)
                 : Center(
                     child: Text(restaurantProvider.message),
                   );
@@ -221,10 +223,12 @@ class _DetailsPageState extends State<DetailsPage> {
         ),
         SizedBox(
           width: SizeConfig.screenWidth * 0.5,
-          child: RaisedButton(
-            color: mainColorDark,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: mainColorDark,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
             ),
             onPressed: () {
               String name = reviewerNameController.text;
@@ -264,7 +268,7 @@ class _DetailsPageState extends State<DetailsPage> {
               );
             }
             return restaurantProvider.state == ResultState.HasData
-                ? CardReviews(restaurantProvider.listCustomerReview)
+                ? CardReviews(restaurantProvider.listCustomerReview!)
                 : Center(
                     child: Text(restaurantProvider.message),
                   );

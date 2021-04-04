@@ -2,17 +2,14 @@ import 'package:foodies/models/models.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static DatabaseHelper _databaseHelper;
-  static Database _database;
+  static late DatabaseHelper? _databaseHelper;
+  static late Database? _database;
 
   DatabaseHelper._createObject();
 
   factory DatabaseHelper() {
-    if (_databaseHelper == null) {
-      _databaseHelper = DatabaseHelper._createObject();
-    }
-
-    return _databaseHelper;
+    _databaseHelper ??= DatabaseHelper._createObject();
+    return _databaseHelper!;
   }
 
   static const String _tblFavorite = 'favorites';
@@ -37,11 +34,8 @@ class DatabaseHelper {
   }
 
   Future<Database> get database async {
-    if (_database == null) {
-      _database = await _initializeDb();
-    }
-
-    return _database;
+    _database ??= await _initializeDb();
+    return _database!;
   }
 
   Future<void> insertFavorite(Restaurant restaurant) async {

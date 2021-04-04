@@ -3,7 +3,9 @@ part of 'models.dart';
 class Drink {
   String name;
 
-  Drink({this.name});
+  Drink({
+    required this.name,
+  });
 
   factory Drink.fromJson(Map<String, dynamic> json) {
     return Drink(

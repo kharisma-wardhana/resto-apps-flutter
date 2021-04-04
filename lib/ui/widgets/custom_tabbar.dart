@@ -5,7 +5,11 @@ class CustomTabBar extends StatelessWidget {
   final List<String> titles;
   final Function(int) onTap;
 
-  CustomTabBar({@required this.titles, this.selectedIndex, this.onTap});
+  CustomTabBar({
+    required this.titles,
+    required this.selectedIndex,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +30,7 @@ class CustomTabBar extends StatelessWidget {
                         child: Center(
                           child: GestureDetector(
                             onTap: () {
-                              if (onTap != null) {
-                                onTap(titles.indexOf(e));
-                              }
+                              onTap(titles.indexOf(e));
                             },
                             child: Column(
                               children: [

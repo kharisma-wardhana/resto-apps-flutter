@@ -65,7 +65,7 @@ class CardReviews extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  customerReview.name ?? "null",
+                  customerReview.name,
                   style: infoStyle.copyWith(
                     color: secondColorDark,
                     fontWeight: FontWeight.w500,
@@ -85,7 +85,7 @@ class CardReviews extends StatelessWidget {
             width: 10,
           ),
           Text(
-            customerReview.review ?? "null",
+            customerReview.review,
             style: infoStyle.copyWith(
               color: secondColor,
               fontWeight: FontWeight.w500,

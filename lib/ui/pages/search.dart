@@ -146,7 +146,7 @@ class _SearchPageState extends State<SearchPage> {
                                         children: [
                                           Column(
                                             children: dataProvider
-                                                .listSearchRestaurant
+                                                .listSearchRestaurant!
                                                 .map(
                                                   (resto) => Padding(
                                                     padding: EdgeInsets.only(
@@ -241,7 +241,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   child: Container(
                     child: Image.network(
-                      snapshot.data,
+                      "{snapshot.data}",
                       fit: BoxFit.cover,
                     ),
                   ),

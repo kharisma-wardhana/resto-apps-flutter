@@ -5,7 +5,11 @@ class OnboardContent extends StatelessWidget {
   final String subtitle;
   final String image;
 
-  OnboardContent({this.title, this.subtitle, this.image});
+  OnboardContent({
+    required this.title,
+    required this.subtitle,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {

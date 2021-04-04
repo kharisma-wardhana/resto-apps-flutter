@@ -1,10 +1,11 @@
 part of 'services.dart';
 
 class RestaurantServices {
-  static Future<ApiResponse<List<Restaurant>>> getListRestaurant(
-      {http.Client client}) async {
+  static Future<ApiResponse<List<Restaurant>?>> getListRestaurant(
+      {http.Client? client}) async {
     client ??= http.Client();
 
+    Uri endpointListResto = Uri.https(baseURL, '/list');
     var response = await client.get(endpointListResto);
     if (response.statusCode != 200) {
       return ApiResponse(message: 'Please try again');
@@ -14,30 +15,36 @@ class RestaurantServices {
     List<Restaurant> restaurants = (data['restaurants'] as Iterable)
         .map((e) => Restaurant.fromJson(e))
         .toList();
-    return ApiResponse(data: restaurants);
+    return ApiResponse(
+      message: 'Successfully',
+      data: restaurants,
+    );
   }
 
   static Future<ApiResponse<Restaurant>> getRestaurant(String id,
-      {http.Client client}) async {
+      {http.Client? client}) async {
     client ??= http.Client();
 
-    String url = '$endpointDetailResto/$id';
-    var response = await client.get(url);
+    Uri endpointURL = Uri.https(baseURL, '/detail', {"id": "$id"});
+    var response = await client.get(endpointURL);
     if (response.statusCode != 200) {
       return ApiResponse(message: 'Please try again');
     }
 
     var data = jsonDecode(response.body);
     Restaurant restaurant = Restaurant.fromJson(data['restaurant']);
-    return ApiResponse(data: restaurant);
+    return ApiResponse(
+      message: 'Successfully',
+      data: restaurant,
+    );
   }
 
   static Future<ApiResponse<List<Restaurant>>> searchRestaurant(String query,
-      {http.Client client}) async {
+      {http.Client? client}) async {
     client ??= http.Client();
 
-    String url = '$endpointSearchResto?q=$query';
-    var response = await client.get(url);
+    Uri endpointURL = Uri.https(baseURL, '/search', {"q": "$query"});
+    var response = await client.get(endpointURL);
     if (response.statusCode != 200) {
       return ApiResponse(message: 'Please try again');
     }
@@ -47,24 +54,27 @@ class RestaurantServices {
         .map((e) => Restaurant.fromJson(e))
         .toList();
 
-    return ApiResponse(data: restaurants);
+    return ApiResponse(
+      message: 'Successfully',
+      data: restaurants,
+    );
   }
 
   static Future<String> getRestaurantImage(String pictureId,
-      {http.Client client}) async {
+      {http.Client? client}) async {
     client ??= http.Client();
 
-    String url = '$baseImageURL/$pictureId';
-    var response = await client.get(url);
+    Uri endpointURL = Uri.https(baseImageURL, '/$pictureId');
+    var response = await client.get(endpointURL);
     if (response.statusCode != 200) {
       return "Please try again";
     }
-    return url;
+    return endpointURL.toString();
   }
 
   static Future<ApiResponse<List<CustomerReview>>> postReview(
       String id, String name, String review,
-      {http.Client client}) async {
+      {http.Client? client}) async {
     client ??= http.Client();
 
     var bodyJson = jsonEncode(<String, dynamic>{
@@ -73,8 +83,9 @@ class RestaurantServices {
       'review': review,
     });
 
+    Uri endpointURL = Uri.https(baseURL, '/review');
     var response = await client.post(
-      endpointReviewResto,
+      endpointURL,
       headers: {
         "Content-Type": "application/json",
         "X-Auth-Token": tokenKey,
@@ -91,6 +102,9 @@ class RestaurantServices {
         .map((e) => CustomerReview.fromJson(e))
         .toList();
 
-    return ApiResponse(data: customerReviews);
+    return ApiResponse(
+      message: 'Successfully',
+      data: customerReviews,
+    );
   }
 }

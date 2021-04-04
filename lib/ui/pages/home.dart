@@ -128,11 +128,12 @@ Widget _listRestaurant(BuildContext context) {
               ),
               children: [
                 Row(
-                  children: restaurantProvider.listRestaurant
+                  children: restaurantProvider.listRestaurant!
                       .map((resto) => Padding(
                             padding: EdgeInsets.only(
                                 left: (resto ==
-                                        restaurantProvider.listRestaurant.first)
+                                        restaurantProvider
+                                            .listRestaurant?.first)
                                     ? defaultMargin + 40
                                     : 0,
                                 right: 10),

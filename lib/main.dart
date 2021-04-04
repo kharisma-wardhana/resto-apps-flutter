@@ -1,3 +1,9 @@
+import 'dart:io';
+
+import 'package:android_alarm_manager/android_alarm_manager.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:foodies/helpers/background_services.dart';
+import 'package:foodies/helpers/notification_helper.dart';
 import 'package:foodies/ui/widgets/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +12,22 @@ import 'package:foodies/ui/pages/pages.dart';
 import 'package:foodies/provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+
+  _service.initializeIsolate();
+
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+
+  await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
   runApp(MyApp());
 }
 
@@ -28,10 +48,10 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Future<bool> checkFirstOpen() async {
+  Future<bool?> checkFirstOpen() async {
     // check sharedpreference
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool firtLaunch = prefs.getBool('first_launch');
+    bool? firtLaunch = prefs.getBool('first_launch');
     return firtLaunch;
   }
 

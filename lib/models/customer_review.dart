@@ -5,7 +5,11 @@ class CustomerReview {
   String review;
   String date;
 
-  CustomerReview({this.name, this.review, this.date});
+  CustomerReview({
+    required this.name,
+    required this.review,
+    required this.date,
+  });
 
   factory CustomerReview.fromJson(Map<String, dynamic> json) {
     return CustomerReview(

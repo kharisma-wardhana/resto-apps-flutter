@@ -1,25 +1,25 @@
 part of 'provider.dart';
 
 class RestaurantProvider extends ChangeNotifier {
-  String _message;
-  ResultState _state;
-  ResultState _detailState;
-  ResultState _searchState;
-  ResultState _reviewState;
-  List<Restaurant> _listRestaurant;
-  List<Restaurant> _listSearchRestaurant;
-  List<CustomerReview> _listcustomerReview;
-  Restaurant _restaurant;
+  late String _message;
+  late ResultState _state;
+  late ResultState _detailState;
+  late ResultState _searchState;
+  late ResultState _reviewState;
+  late List<Restaurant>? _listRestaurant;
+  late List<Restaurant>? _listSearchRestaurant;
+  late List<CustomerReview>? _listcustomerReview;
+  late Restaurant? _restaurant;
 
   ResultState get state => _state;
   ResultState get detailState => _detailState;
   ResultState get searchState => _searchState;
   ResultState get reviewState => _reviewState;
   String get message => _message;
-  List<Restaurant> get listRestaurant => _listRestaurant;
-  List<Restaurant> get listSearchRestaurant => _listSearchRestaurant;
-  List<CustomerReview> get listCustomerReview => _listcustomerReview;
-  Restaurant get restaurant => _restaurant;
+  List<Restaurant>? get listRestaurant => _listRestaurant;
+  List<Restaurant>? get listSearchRestaurant => _listSearchRestaurant;
+  List<CustomerReview>? get listCustomerReview => _listcustomerReview;
+  Restaurant? get restaurant => _restaurant;
 
   RestaurantProvider() {
     _fetchAllRestaurant();
@@ -61,7 +61,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _detailState = ResultState.HasData;
       notifyListeners();
-      _listcustomerReview = apiResponse.data.customerReviews;
+      _listcustomerReview = apiResponse.data?.customerReviews;
       return _restaurant = apiResponse.data;
     } catch (e) {
       _detailState = ResultState.Error;
@@ -76,7 +76,7 @@ class RestaurantProvider extends ChangeNotifier {
       notifyListeners();
       final apiResponse =
           await RestaurantServices.searchRestaurant(searchQuery);
-      if (apiResponse.data == null || apiResponse.data.isEmpty) {
+      if (apiResponse.data == null) {
         _searchState = ResultState.NoData;
         notifyListeners();
         return _message =

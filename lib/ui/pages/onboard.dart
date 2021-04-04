@@ -11,7 +11,7 @@ class OnboardPage extends StatefulWidget {
 class _OnboardPageState extends State<OnboardPage> {
   int currentPage = 0;
   bool isLastIndex = false;
-  PageController pageController;
+  late PageController pageController;
 
   List<Map<String, String>> onboardData = [
     {
@@ -65,9 +65,9 @@ class _OnboardPageState extends State<OnboardPage> {
                 },
                 itemCount: onboardData.length,
                 itemBuilder: (context, index) => OnboardContent(
-                  title: onboardData[index]["title"],
-                  subtitle: onboardData[index]["text"],
-                  image: onboardData[index]["image"],
+                  title: onboardData[index]["title"]!,
+                  subtitle: onboardData[index]["text"]!,
+                  image: onboardData[index]["image"]!,
                 ),
               ),
             ),
@@ -88,9 +88,12 @@ class _OnboardPageState extends State<OnboardPage> {
                     SizedBox(
                       height: 40,
                       width: 150,
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          primary: isLastIndex ? mainColor : secondColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                         onPressed: isLastIndex
                             ? () {
@@ -107,7 +110,6 @@ class _OnboardPageState extends State<OnboardPage> {
                                 });
                                 pageController.jumpToPage(currentPage);
                               },
-                        color: isLastIndex ? mainColor : secondColor,
                         child: Text(
                           isLastIndex ? "Get Started" : "Continue",
                           style: infoStyle.copyWith(
@@ -129,7 +131,7 @@ class _OnboardPageState extends State<OnboardPage> {
     );
   }
 
-  AnimatedContainer _buildDot({int index}) {
+  AnimatedContainer _buildDot({required int index}) {
     return AnimatedContainer(
       duration: Duration(milliseconds: 400),
       child: Container(
