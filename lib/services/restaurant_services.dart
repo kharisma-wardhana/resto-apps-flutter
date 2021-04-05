@@ -65,7 +65,7 @@ class RestaurantServices {
       {http.Client? client}) async {
     client ??= http.Client();
 
-    Uri endpointURL = Uri.https(baseImageURL, '/$pictureId');
+    Uri endpointURL = Uri.https(baseURL, '/images/small/$pictureId');
     var response = await client.get(endpointURL);
     if (response.statusCode != 200) {
       return "Please try again";

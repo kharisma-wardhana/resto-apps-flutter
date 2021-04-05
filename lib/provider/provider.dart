@@ -6,7 +6,6 @@ import 'package:foodies/models/models.dart';
 import 'package:foodies/services/services.dart';
 import 'package:foodies/helpers/date_time_helper.dart';
 import 'package:foodies/helpers/background_services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'restaurant_provider.dart';
 part 'favorite_provider.dart';

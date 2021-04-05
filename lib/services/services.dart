@@ -6,5 +6,4 @@ part 'restaurant_services.dart';
 
 final tokenKey = '12345';
 final baseURL = 'restaurant-api.dicoding.dev';
-final baseImageURL = 'restaurant-api.dicoding.dev/images/small';
 final imageURL = 'https://restaurant-api.dicoding.dev/images/small';
