@@ -41,6 +41,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _state = ResultState.HasData;
       notifyListeners();
+      _listRestaurant = [];
       return _listRestaurant = apiResponse.data;
     } catch (e) {
       _state = ResultState.Error;
@@ -61,6 +62,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _detailState = ResultState.HasData;
       notifyListeners();
+      _listcustomerReview = [];
       _listcustomerReview = apiResponse.data?.customerReviews;
       return _restaurant = apiResponse.data;
     } catch (e) {
@@ -84,6 +86,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _searchState = ResultState.HasData;
       notifyListeners();
+      _listSearchRestaurant = [];
       return _listSearchRestaurant = apiResponse.data;
     } catch (e) {
       _searchState = ResultState.Error;
@@ -106,6 +109,7 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _state = ResultState.HasData;
       notifyListeners();
+      _listcustomerReview = [];
       return _listcustomerReview = apiResponse.data;
     } catch (e) {
       _state = ResultState.Error;

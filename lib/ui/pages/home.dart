@@ -7,6 +7,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoading = false;
+  final NotificationHelper _notificationHelper = NotificationHelper();
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper.configureSelectNotificationSubject(context);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    selectNotificationSubject.close();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -296,7 +309,7 @@ class _HomePageState extends State<HomePage> {
   Widget _sideBarMenu(BuildContext context) {
     return Container(
       width: 65,
-      height: SizeConfig.screenHeight * 0.3,
+      height: SizeConfig.screenHeight * 0.4,
       padding: EdgeInsets.symmetric(
         vertical: 10,
       ),

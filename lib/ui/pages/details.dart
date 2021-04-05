@@ -95,6 +95,16 @@ class _DetailsPageState extends State<DetailsPage> {
                                               widget.restaurant.id)
                                           : provider
                                               .addFavorite(widget.restaurant);
+
+                                      final snackBar = SnackBar(
+                                        content: Text(isFavorite
+                                            ? 'Success Remove from favorite'
+                                            : 'Success Add to Favorite'),
+                                        duration: Duration(seconds: 2),
+                                      );
+
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(snackBar);
                                     },
                                     child: Container(
                                       padding: EdgeInsets.all(3),

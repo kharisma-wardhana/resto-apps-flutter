@@ -72,7 +72,7 @@ class _OnboardPageState extends State<OnboardPage> {
               ),
             ),
             Flexible(
-              flex: 2,
+              flex: 1,
               child: Container(
                 color: Colors.white,
                 child: Column(
@@ -97,7 +97,7 @@ class _OnboardPageState extends State<OnboardPage> {
                               Future<bool> saveFirstOpen = _savePref();
                               saveFirstOpen.then((value) {
                                 if (value) {
-                                  Get.off(HomePage());
+                                  Get.off(() => HomePage());
                                 }
                               });
                             }

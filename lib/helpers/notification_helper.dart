@@ -67,7 +67,7 @@ class NotificationHelper {
       iOS: iOSPlatformChannelSpecifics,
     );
 
-    var titleNotification = "<b>Trending Restaurant</b>";
+    var titleNotification = "<b>Notification Restaurant</b>";
     listRestaurants = listRestaurants?..shuffle();
     Restaurant? restaurant =
         listRestaurants == null ? null : listRestaurants[0];
@@ -82,7 +82,7 @@ class NotificationHelper {
     );
   }
 
-  void configureSelectNotificationSubject(BuildContext context, String route) {
+  void configureSelectNotificationSubject(BuildContext context) {
     selectNotificationSubject.stream.listen((String payload) async {
       var resto = Restaurant.fromJson(jsonDecode(payload));
       Navigator.push(

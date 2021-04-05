@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => PreferencesProvider(
-            preferencesHelper: PreferencesHelper(
+            prefHelper: PreferencesHelper(
               sharedPreferences: SharedPreferences.getInstance(),
             ),
           ),
@@ -63,25 +63,12 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Future<bool?> checkFirstOpen() async {
-    // check sharedpreference
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool? firtLaunch = prefs.getBool('first_launch');
-    return firtLaunch;
-  }
-
   Widget _mainPage(BuildContext context) {
-    return FutureBuilder(
-      future: checkFirstOpen(),
-      builder: (_, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.data == null) {
-            return OnboardPage();
-          }
-          return HomePage();
-        }
-        return CustomLoading();
-      },
-    );
+    return Consumer<PreferencesProvider>(builder: (context, provider, _) {
+      if (provider.isFirstLaunch) {
+        return HomePage();
+      }
+      return OnboardPage();
+    });
   }
 }

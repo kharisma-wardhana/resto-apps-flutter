@@ -12,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:foodies/helpers/notification_helper.dart';
+import 'package:foodies/helpers/background_services.dart';
 
 part 'onboard.dart';
 part 'home.dart';
