@@ -47,7 +47,7 @@ class _DetailsPageState extends State<DetailsPage> {
               width: double.infinity,
               child: FadeInImage.assetNetwork(
                 placeholder: "assets/images/fast_foods.png",
-                image: "$baseImageURL/${widget.restaurant.pictureId}",
+                image: "$imageURL/${widget.restaurant.pictureId}",
                 fit: BoxFit.cover,
               ),
             ),
@@ -60,26 +60,62 @@ class _DetailsPageState extends State<DetailsPage> {
                     Container(
                       height: 100,
                       padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: GestureDetector(
-                          onTap: () {
-                            widget.onBackPressed();
-                          },
-                          child: Container(
-                            padding: EdgeInsets.all(3),
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: Colors.black.withOpacity(0.8),
-                            ),
-                            child: Icon(
-                              EvaIcons.arrowIosBack,
-                              color: whiteColor,
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              widget.onBackPressed();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(3),
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.black.withOpacity(0.8),
+                              ),
+                              child: Icon(
+                                EvaIcons.arrowIosBack,
+                                color: whiteColor,
+                              ),
                             ),
                           ),
-                        ),
+                          Spacer(),
+                          Consumer<FavoriteProvider>(
+                              builder: (context, provider, child) {
+                            return FutureBuilder<bool>(
+                                future:
+                                    provider.isFavorite(widget.restaurant.id),
+                                builder: (context, snapshot) {
+                                  bool isFavorite = snapshot.data ?? false;
+                                  return GestureDetector(
+                                    onTap: () {
+                                      isFavorite
+                                          ? provider.removeFavorite(
+                                              widget.restaurant.id)
+                                          : provider
+                                              .addFavorite(widget.restaurant);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(3),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: Colors.black.withOpacity(0.8),
+                                      ),
+                                      child: Icon(
+                                        isFavorite
+                                            ? EvaIcons.heart
+                                            : EvaIcons.heartOutline,
+                                        color:
+                                            isFavorite ? mainColor : whiteColor,
+                                      ),
+                                    ),
+                                  );
+                                });
+                          }),
+                        ],
                       ),
                     ),
                     Container(
@@ -166,7 +202,7 @@ class _DetailsPageState extends State<DetailsPage> {
               );
             }
             return restaurantProvider.state == ResultState.HasData
-                ? Menus(restaurantProvider.restaurant!.menus)
+                ? Menus(restaurantProvider.restaurant?.menus)
                 : Center(
                     child: Text(restaurantProvider.message),
                   );

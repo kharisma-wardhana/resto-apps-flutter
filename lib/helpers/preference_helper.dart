@@ -5,15 +5,15 @@ class PreferencesHelper {
 
   PreferencesHelper({required this.sharedPreferences});
 
-  static const DAILY_TRENDING = 'DAILY_TRENDING';
+  static const Notification = 'Notification';
 
-  Future<bool> get isDailyTrending async {
+  Future<bool> get isNotificationActive async {
     final prefs = await sharedPreferences;
-    return prefs.getBool(DAILY_TRENDING) ?? false;
+    return prefs.getBool(Notification) ?? false;
   }
 
-  void setDailyTrending(bool value) async {
+  void setNotification(bool value) async {
     final prefs = await sharedPreferences;
-    prefs.setBool(DAILY_TRENDING, value);
+    prefs.setBool(Notification, value);
   }
 }

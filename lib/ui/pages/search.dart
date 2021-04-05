@@ -123,7 +123,6 @@ class _SearchPageState extends State<SearchPage> {
                                     ResultState.Loading) {
                                   return CustomLoading();
                                 }
-                                print(dataProvider.searchState);
                                 if (dataProvider.searchState ==
                                         ResultState.Error ||
                                     dataProvider.searchState ==
@@ -163,7 +162,7 @@ class _SearchPageState extends State<SearchPage> {
                                                           if (value
                                                               is Restaurant) {
                                                             Get.to(
-                                                              DetailsPage(
+                                                              () => DetailsPage(
                                                                 restaurant:
                                                                     resto,
                                                                 onBackPressed:
@@ -221,32 +220,16 @@ class _SearchPageState extends State<SearchPage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
-            child: FutureBuilder(
-              future:
-                  RestaurantServices.getRestaurantImage(restaurant.pictureId),
-              builder: (_, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CustomLoading();
-                }
-                if (snapshot.data == null) {
-                  return Image.asset(
-                    'assets/images/fast_foods.png',
-                    fit: BoxFit.cover,
-                  );
-                }
-                return ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    bottomLeft: Radius.circular(8),
-                  ),
-                  child: Container(
-                    child: Image.network(
-                      "{snapshot.data}",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                );
-              },
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8),
+                bottomLeft: Radius.circular(8),
+              ),
+              child: FadeInImage.assetNetwork(
+                placeholder: "assets/images/fast_foods.png",
+                image: "$imageURL/${restaurant.pictureId}",
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Expanded(

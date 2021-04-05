@@ -72,7 +72,7 @@ class _OnboardPageState extends State<OnboardPage> {
               ),
             ),
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Container(
                 color: Colors.white,
                 child: Column(
@@ -84,41 +84,37 @@ class _OnboardPageState extends State<OnboardPage> {
                         (index) => _buildDot(index: index),
                       ),
                     ),
-                    SizedBox(height: 50),
-                    SizedBox(
-                      height: 40,
-                      width: 150,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          primary: isLastIndex ? mainColor : secondColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                    Spacer(),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: isLastIndex ? mainColor : secondColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: isLastIndex
-                            ? () {
-                                Future<bool> saveFirstOpen = _savePref();
-                                saveFirstOpen.then((value) {
-                                  if (value) {
-                                    Get.off(HomePage());
-                                  }
-                                });
-                              }
-                            : () {
-                                setState(() {
-                                  currentPage += 1;
-                                });
-                                pageController.jumpToPage(currentPage);
-                              },
-                        child: Text(
-                          isLastIndex ? "Get Started" : "Continue",
-                          style: infoStyle.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                          ),
-                          textAlign: TextAlign.center,
+                      ),
+                      onPressed: isLastIndex
+                          ? () {
+                              Future<bool> saveFirstOpen = _savePref();
+                              saveFirstOpen.then((value) {
+                                if (value) {
+                                  Get.off(HomePage());
+                                }
+                              });
+                            }
+                          : () {
+                              setState(() {
+                                currentPage += 1;
+                              });
+                              pageController.jumpToPage(currentPage);
+                            },
+                      child: Text(
+                        isLastIndex ? "Get Started" : "Continue",
+                        style: infoStyle.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],

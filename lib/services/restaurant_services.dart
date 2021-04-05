@@ -10,11 +10,12 @@ class RestaurantServices {
     if (response.statusCode != 200) {
       return ApiResponse(message: 'Please try again');
     }
-
     var data = jsonDecode(response.body);
-    List<Restaurant> restaurants = (data['restaurants'] as Iterable)
-        .map((e) => Restaurant.fromJson(e))
-        .toList();
+    var resto = data['restaurants'];
+
+    List<Restaurant> restaurants =
+        (resto as Iterable).map((e) => Restaurant.fromJson(e)).toList();
+
     return ApiResponse(
       message: 'Successfully',
       data: restaurants,
@@ -25,7 +26,7 @@ class RestaurantServices {
       {http.Client? client}) async {
     client ??= http.Client();
 
-    Uri endpointURL = Uri.https(baseURL, '/detail', {"id": "$id"});
+    Uri endpointURL = Uri.https(baseURL, '/detail/$id');
     var response = await client.get(endpointURL);
     if (response.statusCode != 200) {
       return ApiResponse(message: 'Please try again');

@@ -10,7 +10,7 @@ import 'package:rxdart/rxdart.dart';
 final selectNotificationSubject = BehaviorSubject<String>();
 
 class NotificationHelper {
-  static late NotificationHelper? _instance;
+  static NotificationHelper? _instance;
 
   NotificationHelper._internal() {
     _instance = this;
@@ -21,7 +21,7 @@ class NotificationHelper {
   Future<void> initNotifications(
       FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     var initializationSettingsAndroid =
-        AndroidInitializationSettings('app_icon');
+        AndroidInitializationSettings('ic_launcher');
 
     var initializationSettingsIOS = IOSInitializationSettings(
       requestAlertPermission: false,

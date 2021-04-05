@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:foodies/helpers/background_services.dart';
+import 'package:foodies/helpers/db_helper.dart';
 import 'package:foodies/helpers/notification_helper.dart';
+import 'package:foodies/helpers/preference_helper.dart';
 import 'package:foodies/ui/widgets/widgets.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +41,19 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => RestaurantProvider(),
+        ),
+        ChangeNotifierProvider<FavoriteProvider>(
+          create: (_) => FavoriteProvider(databaseHelper: DatabaseHelper()),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AlarmProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => PreferencesProvider(
+            preferencesHelper: PreferencesHelper(
+              sharedPreferences: SharedPreferences.getInstance(),
+            ),
+          ),
         ),
       ],
       child: GetMaterialApp(

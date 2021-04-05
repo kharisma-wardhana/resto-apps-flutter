@@ -5,5 +5,6 @@ import 'package:http/http.dart' as http;
 part 'restaurant_services.dart';
 
 final tokenKey = '12345';
-final baseURL = 'https://restaurant-api.dicoding.dev';
-final baseImageURL = 'https://restaurant-api.dicoding.dev/images/small';
+final baseURL = 'restaurant-api.dicoding.dev';
+final baseImageURL = 'restaurant-api.dicoding.dev/images/small';
+final imageURL = 'https://restaurant-api.dicoding.dev/images/small';

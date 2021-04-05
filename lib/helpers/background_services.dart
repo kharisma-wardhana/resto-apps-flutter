@@ -8,8 +8,8 @@ import 'package:foodies/services/services.dart';
 final ReceivePort port = ReceivePort();
 
 class BackgroundService {
-  static late BackgroundService? _instance;
-  static late SendPort? _uiSendPort;
+  static BackgroundService? _instance;
+  static SendPort? _uiSendPort;
   static String _isolateName = 'isolate';
 
   BackgroundService._internal() {

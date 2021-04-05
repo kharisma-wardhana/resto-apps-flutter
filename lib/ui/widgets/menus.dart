@@ -1,14 +1,14 @@
 part of 'widgets.dart';
 
 class Menus extends StatelessWidget {
-  final Menu menu;
+  final Menu? menu;
 
   Menus(this.menu);
 
   @override
   Widget build(BuildContext context) {
-    final List<Food> foods = menu.foods;
-    final List<Drink> drinks = menu.drinks;
+    final List<Food> foods = menu!.foods;
+    final List<Drink> drinks = menu!.drinks;
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),

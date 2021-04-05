@@ -2,8 +2,8 @@ import 'package:foodies/models/models.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static late DatabaseHelper? _databaseHelper;
-  static late Database? _database;
+  static DatabaseHelper? _databaseHelper;
+  static Database? _database;
 
   DatabaseHelper._createObject();
 

@@ -7,9 +7,9 @@ class Restaurant {
   final String pictureId;
   final String city;
   final double rating;
-  final Menu menus;
-  final List<Categories> categories;
-  final List<CustomerReview> customerReviews;
+  final Menu? menus;
+  final List<Categories>? categories;
+  final List<CustomerReview>? customerReviews;
 
   Restaurant({
     required this.id,
@@ -37,10 +37,13 @@ class Restaurant {
       city: json['city'],
       pictureId: json['pictureId'],
       rating: json['rating'].toDouble(),
-      menus: Menu.fromJson(json['menus']),
-      categories: listOfCategories.map((e) => Categories.fromJson(e)).toList(),
-      customerReviews:
-          listOfReview.map((e) => CustomerReview.fromJson(e)).toList(),
+      menus: json['menus'] != null ? Menu.fromJson(json['menus']) : null,
+      categories: listOfCategories.isNotEmpty
+          ? listOfCategories.map((e) => Categories.fromJson(e)).toList()
+          : null,
+      customerReviews: listOfReview.isNotEmpty
+          ? listOfReview.map((e) => CustomerReview.fromJson(e)).toList()
+          : null,
     );
   }
 
@@ -50,6 +53,6 @@ class Restaurant {
         "description": description,
         "pictureId": pictureId,
         "city": city,
-        "rating": rating,
+        "rating": rating
       };
 }

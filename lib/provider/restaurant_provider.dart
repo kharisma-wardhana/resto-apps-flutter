@@ -106,7 +106,6 @@ class RestaurantProvider extends ChangeNotifier {
       }
       _state = ResultState.HasData;
       notifyListeners();
-      print(apiResponse.data);
       return _listcustomerReview = apiResponse.data;
     } catch (e) {
       _state = ResultState.Error;
