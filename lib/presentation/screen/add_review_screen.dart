@@ -112,8 +112,11 @@ class AddReviewScreen extends StatelessWidget {
     final _snackBar = SnackBar(
       duration: const Duration(seconds: 1),
       backgroundColor: CustomColors.yellow,
-      content: Text(message, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.sp),),
+      content: Text(
+        message,
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp),
+      ),
     );
-    Scaffold.of(context).showSnackBar(_snackBar);
+    ScaffoldMessenger.of(context).showSnackBar(_snackBar);
   }
 }

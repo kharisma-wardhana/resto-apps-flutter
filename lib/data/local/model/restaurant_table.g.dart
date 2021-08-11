@@ -28,19 +28,21 @@ class RestaurantTableData extends DataClass
       Map<String, dynamic> data, GeneratedDatabase db,
       {String prefix}) {
     final effectivePrefix = prefix ?? '';
-    final stringType = db.typeSystem.forDartType<String>();
     return RestaurantTableData(
-      id: stringType.mapFromDatabaseResponse(data['${effectivePrefix}id']),
-      name: stringType.mapFromDatabaseResponse(data['${effectivePrefix}name']),
-      description: stringType
+      id: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}id']),
+      name: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}name']),
+      description: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}description']),
-      pictureId: stringType
+      pictureId: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}picture_id']),
-      city: stringType.mapFromDatabaseResponse(data['${effectivePrefix}city']),
-      address:
-          stringType.mapFromDatabaseResponse(data['${effectivePrefix}address']),
-      rating:
-          stringType.mapFromDatabaseResponse(data['${effectivePrefix}rating']),
+      city: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}city']),
+      address: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}address']),
+      rating: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}rating']),
     );
   }
   @override
@@ -159,7 +161,7 @@ class RestaurantTableData extends DataClass
                   $mrjc(city.hashCode,
                       $mrjc(address.hashCode, rating.hashCode)))))));
   @override
-  bool operator ==(dynamic other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is RestaurantTableData &&
           other.id == this.id &&
@@ -290,100 +292,55 @@ class $RestaurantTableTable extends RestaurantTable
   final String _alias;
   $RestaurantTableTable(this._db, [this._alias]);
   final VerificationMeta _idMeta = const VerificationMeta('id');
-  GeneratedTextColumn _id;
+  GeneratedColumn<String> _id;
   @override
-  GeneratedTextColumn get id => _id ??= _constructId();
-  GeneratedTextColumn _constructId() {
-    return GeneratedTextColumn(
-      'id',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get id =>
+      _id ??= GeneratedColumn<String>('id', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _nameMeta = const VerificationMeta('name');
-  GeneratedTextColumn _name;
+  GeneratedColumn<String> _name;
   @override
-  GeneratedTextColumn get name => _name ??= _constructName();
-  GeneratedTextColumn _constructName() {
-    return GeneratedTextColumn(
-      'name',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get name =>
+      _name ??= GeneratedColumn<String>('name', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _descriptionMeta =
       const VerificationMeta('description');
-  GeneratedTextColumn _description;
+  GeneratedColumn<String> _description;
   @override
-  GeneratedTextColumn get description =>
-      _description ??= _constructDescription();
-  GeneratedTextColumn _constructDescription() {
-    return GeneratedTextColumn(
-      'description',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get description => _description ??=
+      GeneratedColumn<String>('description', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _pictureIdMeta = const VerificationMeta('pictureId');
-  GeneratedTextColumn _pictureId;
+  GeneratedColumn<String> _pictureId;
   @override
-  GeneratedTextColumn get pictureId => _pictureId ??= _constructPictureId();
-  GeneratedTextColumn _constructPictureId() {
-    return GeneratedTextColumn(
-      'picture_id',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get pictureId =>
+      _pictureId ??= GeneratedColumn<String>('picture_id', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _cityMeta = const VerificationMeta('city');
-  GeneratedTextColumn _city;
+  GeneratedColumn<String> _city;
   @override
-  GeneratedTextColumn get city => _city ??= _constructCity();
-  GeneratedTextColumn _constructCity() {
-    return GeneratedTextColumn(
-      'city',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get city =>
+      _city ??= GeneratedColumn<String>('city', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _addressMeta = const VerificationMeta('address');
-  GeneratedTextColumn _address;
+  GeneratedColumn<String> _address;
   @override
-  GeneratedTextColumn get address => _address ??= _constructAddress();
-  GeneratedTextColumn _constructAddress() {
-    return GeneratedTextColumn(
-      'address',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get address =>
+      _address ??= GeneratedColumn<String>('address', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   final VerificationMeta _ratingMeta = const VerificationMeta('rating');
-  GeneratedTextColumn _rating;
+  GeneratedColumn<String> _rating;
   @override
-  GeneratedTextColumn get rating => _rating ??= _constructRating();
-  GeneratedTextColumn _constructRating() {
-    return GeneratedTextColumn(
-      'rating',
-      $tableName,
-      false,
-    );
-  }
-
+  GeneratedColumn<String> get rating =>
+      _rating ??= GeneratedColumn<String>('rating', aliasedName, false,
+          typeName: 'TEXT', requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
       [id, name, description, pictureId, city, address, rating];
   @override
-  $RestaurantTableTable get asDslTable => this;
+  String get aliasedName => _alias ?? 'restaurant_table';
   @override
-  String get $tableName => _alias ?? 'restaurant_table';
-  @override
-  final String actualTableName = 'restaurant_table';
+  String get actualTableName => 'restaurant_table';
   @override
   VerificationContext validateIntegrity(
       Insertable<RestaurantTableData> instance,
@@ -440,8 +397,8 @@ class $RestaurantTableTable extends RestaurantTable
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
   RestaurantTableData map(Map<String, dynamic> data, {String tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : null;
-    return RestaurantTableData.fromData(data, _db, prefix: effectivePrefix);
+    return RestaurantTableData.fromData(data, _db,
+        prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 
   @override

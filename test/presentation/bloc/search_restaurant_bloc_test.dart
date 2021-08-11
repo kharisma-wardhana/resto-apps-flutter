@@ -39,7 +39,7 @@ void main() {
           searchRestaurantUseCase: mockSearchRestaurantUseCase);
     },
     act: (bloc) => bloc.add(SearchRestaurant(searchText: 'restaurant')),
-    expect: [
+    expect: () => [
       SearchRestaurantLoadingState(),
       SearchRestaurantLoadedState(
         listRestaurant: [
@@ -80,7 +80,7 @@ void main() {
           searchRestaurantUseCase: mockSearchRestaurantUseCase);
     },
     act: (bloc) => bloc.add(SearchRestaurant(searchText: 'restaurant')),
-    expect: [
+    expect: () => [
       SearchRestaurantLoadingState(),
       SearchRestaurantFailedState(message: "message"),
     ],

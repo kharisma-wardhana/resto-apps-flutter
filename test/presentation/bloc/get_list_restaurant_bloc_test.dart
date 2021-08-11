@@ -39,7 +39,7 @@ void main() {
           getListRestaurantUseCase: mockGetListRestaurantUseCase);
     },
     act: (bloc) => bloc.add(GetListRestaurant()),
-    expect: [
+    expect: () => [
       GetListRestaurantLoadingState(),
       GetListRestaurantLoadedState(
         listRestaurant: [
@@ -80,7 +80,7 @@ void main() {
           getListRestaurantUseCase: mockGetListRestaurantUseCase);
     },
     act: (bloc) => bloc.add(GetListRestaurant()),
-    expect: [
+    expect: () => [
       GetListRestaurantLoadingState(),
       GetListRestaurantFailedState(message: "message"),
     ],

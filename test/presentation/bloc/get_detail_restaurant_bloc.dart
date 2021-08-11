@@ -47,7 +47,7 @@ void main() {
           getRestaurantDetailUseCase: mockGetRestaurantDetailUseCase);
     },
     act: (bloc) => bloc.add(GetDetailRestaurant(restaurantId: 'id')),
-    expect: [
+    expect: () => [
       GetDetailRestaurantLoadingState(),
       GetDetailRestaurantLoadedState(
           detailRestaurant: DetailRestaurantEntity(
@@ -107,7 +107,7 @@ void main() {
           getRestaurantDetailUseCase: mockGetRestaurantDetailUseCase);
     },
     act: (bloc) => bloc.add(GetDetailRestaurant(restaurantId: 'id')),
-    expect: [
+    expect: () => [
       GetDetailRestaurantLoadingState(),
       GetDetailRestaurantFailedState(message: "message"),
     ],

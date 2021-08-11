@@ -25,7 +25,7 @@ void main() {
     },
     act: (bloc) => bloc
         .add(AddReview(restaurantId: 'id', userName: 'name', review: 'review')),
-    expect: [AddReviewLoadingState(), AddReviewSuccessState()],
+    expect: () => [AddReviewLoadingState(), AddReviewSuccessState()],
   );
 
   blocTest<AddReviewBloc, AddReviewState>(
@@ -39,7 +39,7 @@ void main() {
     },
     act: (bloc) => bloc
         .add(AddReview(restaurantId: 'id', userName: 'name', review: 'review')),
-    expect: [AddReviewLoadingState(), AddReviewFailedState()],
+    expect: () => [AddReviewLoadingState(), AddReviewFailedState()],
   );
 
   blocTest<AddReviewBloc, AddReviewState>(
@@ -53,7 +53,7 @@ void main() {
     },
     act: (bloc) =>
         bloc.add(AddReview(restaurantId: 'id', userName: '', review: 'review')),
-    expect: [AddReviewLoadingState(), AddReviewNameEmptyState()],
+    expect: () => [AddReviewLoadingState(), AddReviewNameEmptyState()],
   );
 
   blocTest<AddReviewBloc, AddReviewState>(
@@ -65,8 +65,8 @@ void main() {
           .thenAnswer((_) async => response);
       return AddReviewBloc(addReviewUseCase: mockAddReviewUseCase);
     },
-    act: (bloc) => bloc
-        .add(AddReview(restaurantId: 'id', userName: 'name', review: '')),
-    expect: [AddReviewLoadingState(), AddReviewReviewEmptyState()],
+    act: (bloc) =>
+        bloc.add(AddReview(restaurantId: 'id', userName: 'name', review: '')),
+    expect: () => [AddReviewLoadingState(), AddReviewReviewEmptyState()],
   );
 }
