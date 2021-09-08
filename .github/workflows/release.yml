@@ -123,7 +123,7 @@ jobs:
           echo $VERSION_CODE
 
       - name: Update KeyStore password in gradle properties
-        run: sed -i 's/#{STORE_PASSWORD}#/${{ secrets.KEYSTORE_PASS }}/g' android/key.properties
+        run: sed -i 's/#{STORE_PASS}#/${{ secrets.KEYSTORE_PASS }}/g' android/key.properties
 
       - name: Update KeyStore key in gradle properties
         run: sed -i 's/#{KEY_PASS}#/${{ secrets.KEYSTORE_KEY }}/g' android/key.properties
